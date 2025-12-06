@@ -6,54 +6,58 @@
 
 @layer base {
   :root {
-    --background: 48 33% 97%;
-    --foreground: 150 45% 20%;
+    /* Patanjali-inspired palette: saffron, warm beige, deep maroon/brown */
+    --background: 40 80% 96%; /* warm cream */
+    --foreground: 22 18% 12%; /* deep brown text */
 
     --card: 0 0% 100%;
-    --card-foreground: 150 45% 20%;
+    --card-foreground: 22 18% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 150 45% 20%;
+    --popover-foreground: 22 18% 12%;
 
-    --primary: 120 15% 43%;
+    --primary: 142 76% 36%; /* premium green */
     --primary-foreground: 0 0% 100%;
 
-    --primary-dark: 160 45% 20%;
+    --primary-dark: 142 60% 25%; /* darker green */
 
-    --secondary: 48 33% 97%;
-    --secondary-foreground: 150 45% 20%;
+    --secondary: 40 40% 95%;
+    --secondary-foreground: 22 18% 12%;
 
-    --muted: 48 20% 90%;
-    --muted-foreground: 150 10% 45%;
+    --muted: 40 20% 90%;
+    --muted-foreground: 22 10% 45%;
 
-    --accent: 25 65% 53%;
+    --accent: 12 70% 28%; /* deep maroon/brown accent */
     --accent-foreground: 0 0% 100%;
 
-    --accent-dark: 15 47% 37%;
+    --accent-dark: 12 65% 22%; /* darker maroon */
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 48 20% 85%;
-    --input: 48 20% 85%;
-    --ring: 120 15% 43%;
+    --border: 45 20% 88%;
+    --input: 40 20% 92%;
+    --ring: 38 85% 52%;
 
     --radius: 0.75rem;
 
-    --beige: 48 33% 97%;
-    --herbal: 120 15% 43%;
-    --forest: 160 45% 20%;
-    --ayurveda-orange: 25 65% 53%;
-    --brown: 15 47% 37%;
+    --beige: 40 80% 96%;
+    --saffron: 38 85% 52%;
+    --brand-dark: 12 70% 28%;
+    --ayurveda-orange: 142 76% 36%;
+    --brown: 12 65% 22%;
+    /* Keep legacy variable names used by Tailwind config */
+    --forest: 12 70% 28%;
+    --herbal: 38 85% 52%;
 
-    --sidebar-background: 48 33% 97%;
-    --sidebar-foreground: 150 45% 20%;
-    --sidebar-primary: 120 15% 43%;
+    --sidebar-background: 40 80% 96%;
+    --sidebar-foreground: 22 18% 12%;
+    --sidebar-primary: 38 85% 52%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 48 20% 90%;
-    --sidebar-accent-foreground: 150 45% 20%;
-    --sidebar-border: 48 20% 85%;
-    --sidebar-ring: 120 15% 43%;
+    --sidebar-accent: 40 20% 92%;
+    --sidebar-accent-foreground: 22 18% 12%;
+    --sidebar-border: 40 20% 88%;
+    --sidebar-ring: 38 85% 52%;
   }
 
   .dark {
@@ -92,7 +96,7 @@
     --beige: 150 45% 8%;
     --herbal: 120 20% 50%;
     --forest: 120 15% 35%;
-    --ayurveda-orange: 25 65% 53%;
+    --ayurveda-orange: 120 20% 50%;
     --brown: 15 47% 45%;
 
     --sidebar-background: 150 40% 12%;
@@ -112,7 +116,13 @@
   }
 
   body {
-    @apply bg-background text-foreground font-body antialiased;
+    /* Solid beige background */
+    background-color: #FAF9F4;
+    @apply text-foreground font-body antialiased;
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -127,5 +137,25 @@
 
   .font-body {
     font-family: 'Inter', sans-serif;
+  }
+
+  /* Premium background utility */
+  .bg-premium {
+    background: linear-gradient(135deg, #FAF9F4 0%, #F5F3ED 50%, #EFECE6 100%);
+  }
+
+  /* Subtle grain texture (requires public/textures/grain-light.png) */
+  .bg-grain {
+    background-image: url('/textures/grain-light.svg');
+    background-repeat: repeat;
+    opacity: 0.95;
+  }
+
+  /* Decorative soft rounded blob */
+  .decorative-blob {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(40px);
+    opacity: 0.3;
   }
 }

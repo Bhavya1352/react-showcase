@@ -10,6 +10,8 @@ interface ProductCardProps {
   rating: number;
   reviews: number;
   image: string;
+  onAddToCart?: () => void;
+  onClick?: () => void;
 }
 
 export const ProductCard = ({
@@ -21,9 +23,14 @@ export const ProductCard = ({
   rating,
   reviews,
   image,
+  onAddToCart,
+  onClick,
 }: ProductCardProps) => {
   return (
-    <div className="group bg-card rounded-xl shadow-soft hover:shadow-elegant transition-all duration-300 overflow-hidden">
+    <div
+      onClick={onClick}
+      className="group bg-card rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.06)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-300 overflow-hidden cursor-pointer"
+    >
       <Link to={`/product/${id}`}>
         <div className="relative aspect-square overflow-hidden bg-beige">
           <img
@@ -33,39 +40,42 @@ export const ProductCard = ({
           />
         </div>
       </Link>
-      <div className="p-4">
+      <div className="p-3 sm:p-4">
         <Link to={`/product/${id}`}>
-          <h3 className="font-heading text-lg font-semibold text-forest line-clamp-2 hover:text-primary transition-colors">
+          <h3 className="font-heading text-base sm:text-lg font-semibold text-forest line-clamp-2 hover:text-primary transition-colors">
             {name}
           </h3>
         </Link>
-        <p className="text-sm text-muted-foreground mt-1 line-clamp-2">{description}</p>
-        
+        <p className="text-sm sm:text-[15px] font-normal tracking-wide text-gray-700 mt-1 line-clamp-2">{description}</p>
+
         <div className="flex items-center gap-1 mt-2">
           {[...Array(5)].map((_, i) => (
             <Star
               key={i}
-              className={`w-4 h-4 ${
+              className={`w-3 h-3 sm:w-4 sm:h-4 ${
                 i < Math.floor(rating)
                   ? "text-ayurveda-orange fill-ayurveda-orange"
                   : "text-muted"
               }`}
             />
           ))}
-          <span className="text-sm text-muted-foreground ml-1">({reviews})</span>
+          <span className="text-xs sm:text-sm text-muted-foreground ml-1">({reviews})</span>
         </div>
 
-        <div className="flex items-center justify-between mt-4">
+        <div className="flex items-center justify-between mt-3 sm:mt-4">
           <div>
-            <span className="text-lg font-semibold text-brown">₹{price}</span>
+            <span className="text-base sm:text-lg font-semibold text-brown">₹{price}</span>
             {originalPrice && (
-              <span className="text-sm text-muted-foreground line-through ml-2">
+              <span className="text-xs sm:text-sm text-muted-foreground line-through ml-1 sm:ml-2">
                 ₹{originalPrice}
               </span>
             )}
           </div>
-          <button className="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center hover:bg-primary-dark transition-colors">
-            <Plus className="w-5 h-5" />
+          <button
+            onClick={onAddToCart}
+            className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center hover:bg-primary-dark transition-colors"
+          >
+            <Plus className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
         </div>
       </div>

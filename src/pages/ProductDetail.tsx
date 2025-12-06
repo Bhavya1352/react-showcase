@@ -5,6 +5,7 @@ import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { ProductCard } from "@/components/ui/ProductCard";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useToast } from "@/hooks/use-toast";
 
 const productImages = [
   "https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=600",
@@ -72,6 +73,14 @@ export default function ProductDetail() {
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState("100ml");
+  const { toast } = useToast();
+
+  const handleAddToCart = () => {
+    toast({
+      title: "Added to Cart",
+      description: "Product has been added to your cart.",
+    });
+  };
 
   return (
     <Layout>
@@ -115,7 +124,7 @@ export default function ProductDetail() {
               </div>
             </div>
 
-            {/* Product Info */}
+            {/* Product Info and Reviews */}
             <div className="space-y-6">
               <div>
                 <h1 className="font-heading text-2xl lg:text-3xl font-bold text-forest mb-2">
@@ -185,16 +194,23 @@ export default function ProductDetail() {
               </div>
 
               {/* Actions */}
-              <div className="flex gap-4">
-                <Button className="flex-1 bg-primary hover:bg-primary-dark text-primary-foreground py-6 text-lg">
-                  Add to Cart
-                </Button>
-                <button className="p-4 border border-border rounded-lg hover:bg-muted transition-colors">
-                  <Heart className="w-6 h-6" />
-                </button>
-                <button className="p-4 border border-border rounded-lg hover:bg-muted transition-colors">
-                  <Share2 className="w-6 h-6" />
-                </button>
+              <div className="space-y-4">
+                <div className="flex gap-4">
+                  <Button onClick={handleAddToCart} className="flex-1 bg-primary hover:bg-primary-dark text-primary-foreground py-6 text-lg">
+                    Add to Cart
+                  </Button>
+                  <Button variant="outline" className="flex-1 border-primary text-primary hover:bg-primary hover:text-primary-foreground py-6 text-lg">
+                    Buy Now
+                  </Button>
+                </div>
+                <div className="flex gap-4 justify-center">
+                  <button className="p-4 border border-border rounded-lg hover:bg-muted transition-colors">
+                    <Heart className="w-6 h-6" />
+                  </button>
+                  <button className="p-4 border border-border rounded-lg hover:bg-muted transition-colors">
+                    <Share2 className="w-6 h-6" />
+                  </button>
+                </div>
               </div>
 
               {/* Description */}
@@ -226,6 +242,71 @@ export default function ProductDetail() {
                   <div className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-primary" />
                     <span>Cruelty Free</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Reviews Section */}
+              <div>
+                <div className="flex items-center justify-between mb-6">
+                  <h2 className="font-heading text-xl font-bold text-forest">Reviews and Ratings</h2>
+                  <Button variant="outline" size="sm">Write a Review</Button>
+                </div>
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="text-3xl font-bold text-forest">4.6</div>
+                  <div>
+                    <div className="flex items-center gap-1">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className={`w-4 h-4 ${
+                            i < 4 ? "text-ayurveda-orange fill-ayurveda-orange" : "text-muted"
+                          }`}
+                        />
+                      ))}
+                    </div>
+                    <p className="text-sm text-muted-foreground">Based on 156 reviews</p>
+                  </div>
+                </div>
+                <div className="relative max-h-96 overflow-y-auto">
+                  {/* Timeline line */}
+                  <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-primary/30"></div>
+
+                  <div className="space-y-6">
+                    {reviews.map((review, index) => (
+                      <div key={review.id} className="relative flex gap-4">
+                        {/* Timeline dot */}
+                        <div className="relative z-10 w-10 h-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold text-sm">
+                          {index + 1}
+                        </div>
+
+                        {/* Review content */}
+                        <div className="flex-1 bg-card rounded-lg p-4 border border-border shadow-sm">
+                          <div className="flex items-center gap-2 mb-2">
+                            <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center font-medium text-primary text-xs">
+                              {review.name[0]}
+                            </div>
+                            <div>
+                              <p className="font-medium text-sm">{review.name}</p>
+                              <p className="text-xs text-muted-foreground">{review.date}</p>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-1 mb-2">
+                            {[...Array(5)].map((_, i) => (
+                              <Star
+                                key={i}
+                                className={`w-3 h-3 ${
+                                  i < review.rating
+                                    ? "text-ayurveda-orange fill-ayurveda-orange"
+                                    : "text-muted"
+                                }`}
+                              />
+                            ))}
+                          </div>
+                          <p className="text-muted-foreground text-sm leading-relaxed">{review.comment}</p>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -319,58 +400,6 @@ export default function ProductDetail() {
                   <Play className="w-8 h-8 text-primary-foreground fill-primary-foreground" />
                 </div>
               </button>
-            </div>
-          </div>
-
-          {/* Reviews Section */}
-          <div className="mt-12">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="font-heading text-2xl font-bold text-forest">Reviews and Ratings</h2>
-              <Button variant="outline">Write a Review</Button>
-            </div>
-            <div className="flex items-center gap-4 mb-8">
-              <div className="text-4xl font-bold text-forest">4.6</div>
-              <div>
-                <div className="flex items-center gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className={`w-5 h-5 ${
-                        i < 4 ? "text-ayurveda-orange fill-ayurveda-orange" : "text-muted"
-                      }`}
-                    />
-                  ))}
-                </div>
-                <p className="text-sm text-muted-foreground">Based on 156 reviews</p>
-              </div>
-            </div>
-            <div className="space-y-6">
-              {reviews.map((review) => (
-                <div key={review.id} className="border-b border-border pb-6">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center font-medium text-primary">
-                      {review.name[0]}
-                    </div>
-                    <div>
-                      <p className="font-medium">{review.name}</p>
-                      <p className="text-sm text-muted-foreground">{review.date}</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-1 mb-2">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className={`w-4 h-4 ${
-                          i < review.rating
-                            ? "text-ayurveda-orange fill-ayurveda-orange"
-                            : "text-muted"
-                        }`}
-                      />
-                    ))}
-                  </div>
-                  <p className="text-muted-foreground">{review.comment}</p>
-                </div>
-              ))}
             </div>
           </div>
 

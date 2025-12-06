@@ -20,7 +20,7 @@ export const Header = () => {
     <header className="sticky top-0 z-50 w-full">
       {/* Top Banner */}
       <div className="bg-primary text-primary-foreground py-2 px-4 text-center text-sm">
-        <span>Your first 3 minutes instant call is free</span>
+        <span>Welcome to AMRUTAM — Authentic Ayurvedic Wellness</span>
         <Button variant="ghost" size="sm" className="ml-4 text-primary-foreground hover:bg-primary-dark">
           <Phone className="w-4 h-4 mr-1" />
           Try Instant Free Call Now
@@ -28,7 +28,7 @@ export const Header = () => {
       </div>
 
       {/* Main Header */}
-      <div className="bg-card/95 backdrop-blur-md border-b border-border">
+      <div className="bg-card/95 backdrop-blur-md border-b border-border shadow-sm">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Mobile Menu Button */}
@@ -40,10 +40,7 @@ export const Header = () => {
             </button>
 
             {/* Logo */}
-            <Link to="/" className="flex items-center">
-              <h1 className="text-2xl lg:text-3xl font-heading font-bold text-forest tracking-wider">
-                AMRUTAM
-              </h1>
+            <Link to="/" className="flex items-center gap-3">
             </Link>
 
             {/* Desktop Navigation */}
@@ -52,9 +49,9 @@ export const Header = () => {
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`text-sm font-medium transition-colors hover:text-primary ${
+                  className={`relative text-sm font-medium transition-transform transition-colors hover:text-primaryDark ${
                     location.pathname === link.path
-                      ? "text-primary border-b-2 border-primary pb-1"
+                      ? "text-primary after:w-full after:h-[2px] after:bg-primary after:absolute after:-bottom-1 after:left-0 pb-1"
                       : "text-foreground/80"
                   }`}
                 >
@@ -65,9 +62,11 @@ export const Header = () => {
 
             {/* Right Icons */}
             <div className="flex items-center space-x-2 sm:space-x-4">
-              <button className="p-2 rounded-full hover:bg-muted transition-colors">
-                <Search className="w-5 h-5" />
-              </button>
+              {/* Premium search box */}
+              <div className="hidden sm:flex bg-white rounded-full px-6 py-3 shadow-[0_4px_12px_rgba(0,0,0,0.06)] items-center gap-3 w-72">
+                <Search className="text-primary w-5 h-5" />
+                <input className="flex-1 outline-none text-sm bg-transparent" placeholder="Search products..." />
+              </div>
               <Link to="/cart" className="p-2 rounded-full hover:bg-muted transition-colors relative">
                 <ShoppingCart className="w-5 h-5" />
                 <span className="absolute -top-1 -right-1 bg-accent text-accent-foreground text-xs w-5 h-5 rounded-full flex items-center justify-center">

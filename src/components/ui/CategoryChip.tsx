@@ -9,20 +9,16 @@ export const CategoryChip = ({ icon, label, isActive, onClick }: CategoryChipPro
   return (
     <button
       onClick={onClick}
-      className={`flex flex-col items-center gap-2 p-3 rounded-xl transition-all ${
+      className={`flex flex-col items-center w-full max-w-[100px] min-w-[80px] p-3 rounded-xl transition-all transform ${
         isActive
-          ? "bg-primary/10 border-2 border-primary"
-          : "bg-card hover:bg-muted border-2 border-transparent"
+          ? "bg-primary/10 border-2 border-primary shadow-lg"
+          : "bg-card border-2 border-transparent hover:-translate-y-1 hover:shadow-lg"
       }`}
     >
-      <div className={`w-12 h-12 rounded-full flex items-center justify-center text-2xl ${
-        isActive ? "bg-primary/20" : "bg-muted"
-      }`}>
-        {icon}
+      <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white shadow-md flex items-center justify-center mb-2">
+        <span className="text-xl sm:text-2xl">{icon}</span>
       </div>
-      <span className={`text-xs font-medium ${isActive ? "text-primary" : "text-foreground"}`}>
-        {label}
-      </span>
+      <p className="text-xs sm:text-sm font-medium text-primaryDark text-center leading-tight">{label}</p>
     </button>
   );
 };
