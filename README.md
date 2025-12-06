@@ -1,63 +1,152 @@
-# Ayurveda
+# AMRUTAM - Authentic Ayurvedic Wellness 🕉️
 
-## Project info
+> *Discover the ancient wisdom of Ayurveda for modern wellness*
 
-This is a local React + TypeScript starter project.
+AMRUTAM is a comprehensive Ayurvedic wellness platform that brings authentic Ayurvedic products and certified practitioners together in one seamless digital experience.
 
-## How can I edit this code?
+## ✨ Features
 
-There are several ways of editing your application.
+### 🛍️ **E-Commerce Store**
+- **Authentic Products**: Curated collection of genuine Ayurvedic medicines, supplements, and wellness products
+- **Category Navigation**: Easy browsing by Hair Care, Skin Care, Digestion, Immunity, and more
+- **Product Reviews**: Customer testimonials and ratings for informed purchasing
+- **Responsive Design**: Optimized shopping experience across all devices
 
-**Use your preferred IDE**
+### 👨‍⚕️ **Doctor Consultation Booking**
+- **Certified Practitioners**: Connect with verified Ayurvedic doctors and specialists
+- **Video Consultations**: Seamless online consultations from the comfort of your home
+- **Specialty Filters**: Find doctors by Panchakarma, Dermatology, Psychiatry, and more
+- **Real-time Availability**: Check doctor schedules and book appointments instantly
 
-If you want to work locally using your own IDE, you can clone this repo and push changes.
+### 🎨 **Modern UI/UX**
+- **Beautiful Design**: Ayurvedic-inspired color palette with modern aesthetics
+- **Smooth Animations**: Framer Motion powered interactions and transitions
+- **Mobile-First**: Fully responsive design that works perfectly on all devices
+- **Accessibility**: WCAG compliant design for inclusive user experience
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## 🚀 Getting Started
 
-Follow these steps:
+### Prerequisites
+- Node.js (v18 or higher)
+- npm or yarn
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### Installation
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+1. **Clone the repository**
+   ```bash
+   git clone <YOUR_GIT_URL>
+   cd amrutam
+   ```
 
-# Step 3: Install the necessary dependencies.
-npm i
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+3. **Start the development server**
+   ```bash
+   npm run dev
+   ```
+
+4. **Open your browser**
+   Navigate to `http://localhost:5173`
+
+## 🛠️ Tech Stack
+
+- **Frontend**: React 18 with TypeScript
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS
+- **UI Components**: shadcn/ui (Radix UI primitives)
+- **Animations**: Framer Motion
+- **Routing**: React Router DOM
+- **Icons**: Lucide React
+- **State Management**: React Hooks
+
+## 📁 Project Structure
+
+```
+amrutam/
+├── public/                 # Static assets
+├── src/
+│   ├── components/         # Reusable UI components
+│   │   ├── layout/        # Layout components (Header, Footer)
+│   │   └── ui/            # shadcn/ui components
+│   ├── pages/             # Page components
+│   │   ├── Shop.tsx       # E-commerce store
+│   │   ├── Doctors.tsx    # Doctor consultation booking
+│   │   └── ...
+│   ├── hooks/             # Custom React hooks
+│   ├── lib/               # Utility functions
+│   └── styles/            # Global styles
+├── package.json
+└── README.md
 ```
 
-**Edit a file directly in GitHub**
+## 🎯 Key Components
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Shop Page (`/shop`)
+- Product catalog with filtering and search
+- Category-based navigation
+- Customer reviews section
+- Ayurvedic shorts video carousel
 
-**Use GitHub Codespaces**
+### Doctors Page (`/doctors`)
+- Doctor directory with specialty filters
+- Pagination for large doctor lists
+- Detailed doctor profiles
+- Appointment booking system
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### Responsive Design
+- Mobile-first approach
+- Adaptive layouts for tablets and desktops
+- Touch-friendly interactions
+- Optimized performance across devices
 
-## What technologies are used for this project?
+## 🚀 Deployment
 
-This project is built with:
+### Vercel (Recommended)
+1. Connect your GitHub repository to Vercel
+2. Vercel will automatically detect the Vite configuration
+3. Deploy with `npm run build`
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Netlify
+1. Connect your repository to Netlify
+2. Set build command: `npm run build`
+3. Set publish directory: `dist`
 
-## How can I deploy this project?
+### Manual Deployment
+```bash
+# Build for production
+npm run build
 
-Deploy this project to your preferred static host (Vercel, Netlify, etc.) by connecting the repository and running the build command `npm run build`.
+# Preview production build
+npm run preview
+```
 
-## Custom domain
+## 🤝 Contributing
 
-Connect a custom domain in your hosting provider's project settings after you deploy.
+We welcome contributions to AMRUTAM! Please follow these steps:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- Inspired by traditional Ayurvedic practices
+- Built with modern web technologies
+- Dedicated to promoting authentic wellness solutions
+
+## 📞 Support
+
+For support, email support@amrutam.com or join our community forum.
+
+---
+
+**AMRUTAM** - *Where Ancient Wisdom Meets Modern Wellness* 🌿✨
