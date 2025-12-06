@@ -317,6 +317,7 @@ export default function Shop() {
   const { toast } = useToast();
   const summerScrollRef = useRef<HTMLDivElement>(null);
   const bestsellerScrollRef = useRef<HTMLDivElement>(null);
+  const shortsScrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Show welcome popup after a short delay
@@ -379,7 +380,7 @@ export default function Shop() {
           <div className="absolute -left-20 -top-20 w-[300px] h-[300px] bg-[#E7DCC8] rounded-full blur-3xl opacity-30" />
           <div className="absolute -right-8 bottom-8 w-[220px] h-[220px] bg-[#F6EFD9] rounded-full blur-3xl opacity-25" />
         </div>
-        <div className="container mx-auto px-4" style={{ paddingTop: '40px', paddingBottom: '20px' }}>
+        <div className="container mx-auto px-4 pt-10 pb-5">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -396,7 +397,7 @@ export default function Shop() {
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             className="max-w-2xl mx-auto relative"
           >
-            <div style={{ height: '54px', borderRadius: '40px', background: '#F1F1F1', padding: '0 24px' }} className="flex items-center gap-3 shadow-[0_4px_12px_rgba(0,0,0,0.08)]">
+            <div className="flex items-center gap-3 h-12 sm:h-14 rounded-full bg-[#F1F1F1] px-6 shadow-[0_4px_12px_rgba(0,0,0,0.08)]">
               <Search className="text-primary w-5 h-5" />
               <input
                 type="text"
@@ -468,7 +469,7 @@ export default function Shop() {
             transition={{ duration: 0.6, delay: 0.8 }}
             className="mb-12"
           >
-            <div className="flex items-center justify-end mb-6">
+            <div className="hidden md:flex items-center justify-end mb-6">
               <div className="flex gap-2">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
@@ -510,7 +511,7 @@ export default function Shop() {
                     visible: { opacity: 1, y: 0 }
                   }}
                   transition={{ duration: 0.5 }}
-                  className="flex-shrink-0 w-72 sm:w-80"
+                  className="flex-shrink-0 w-[80vw] sm:w-72 md:w-80"
                 >
                   <ProductCard
                     {...product}
@@ -530,30 +531,9 @@ export default function Shop() {
           >
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-semibold text-primaryDark/90">Bestsellers</h2>
-              <div className="flex gap-2">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-10 h-10 rounded-full border border-border flex items-center justify-center hover:bg-muted transition-colors"
-                >
-                  <ChevronLeft className="w-5 h-5" />
-                </motion.button>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-10 h-10 rounded-full border border-border flex items-center justify-center hover:bg-muted transition-colors"
-                >
-                  <ChevronRight className="w-5 h-5" />
-                </motion.button>
-              </div>
             </div>
             <motion.div
-              ref={bestsellerScrollRef}
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(3, 1fr)',
-                gap: '28px'
-              }}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7"
               initial="hidden"
               animate="visible"
               variants={{
@@ -602,18 +582,30 @@ export default function Shop() {
           >
             Ayurvedic Shorts
           </motion.h2>
+          <div className="hidden md:flex items-center justify-end mb-6">
+            <div className="flex gap-2">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => scrollLeft(shortsScrollRef)}
+                className="w-10 h-10 rounded-full border border-border flex items-center justify-center hover:bg-muted transition-colors"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => scrollRight(shortsScrollRef)}
+                className="w-10 h-10 rounded-full border border-border flex items-center justify-center hover:bg-muted transition-colors"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </motion.button>
+            </div>
+          </div>
           <div className="relative overflow-hidden w-full max-w-5xl mx-auto px-4">
             <motion.div
-              className="flex gap-4 sm:gap-8"
-              animate={{
-                x: [0, -2080] // Move left by width of all 10 items (176px width + 32px gap = 208px * 10 = 2080px)
-              }}
-              transition={{
-                duration: 30,
-                repeat: Infinity,
-                ease: "linear"
-              }}
-              style={{ width: 'max-content' }}
+              ref={shortsScrollRef}
+              className="flex gap-4 sm:gap-8 overflow-x-auto pb-4 scrollbar-hide"
             >
               {[
                 { id: 1, title: "5 Min Yoga for Digestion", thumbnail: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=300&h=500&fit=crop", duration: "5:23" },
@@ -684,7 +676,7 @@ export default function Shop() {
           </motion.h2>
 
           {/* Reviews Grid - Mobile Friendly */}
-          <div className="grid gap-6 md:gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {[
               {
                 id: 1,
