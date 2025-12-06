@@ -132,7 +132,7 @@ export default function About() {
             <div className="relative">
               <div className="aspect-square rounded-3xl overflow-hidden">
                 <img
-                  src="/Ayurvedic-ingredients"
+                  src="/Ayurvedic-ingredients.jpg"
                   alt="Ayurvedic ingredients"
                   className="w-full h-full object-cover"
                 />
@@ -154,7 +154,7 @@ export default function About() {
             {values.map((value, idx) => (
               <div
                 key={idx}
-                className="bg-card rounded-xl p-6 text-center shadow-soft hover:shadow-elegant transition-shadow"
+                className="bg-card rounded-full p-6 text-center shadow-soft hover:shadow-elegant transition-shadow aspect-square flex flex-col justify-center"
               >
                 <div className="w-16 h-16 mx-auto rounded-full bg-primary/10 flex items-center justify-center text-3xl mb-4">
                   {value.icon}

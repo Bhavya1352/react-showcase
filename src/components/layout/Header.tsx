@@ -1,16 +1,16 @@
 import { Link, useLocation } from "react-router-dom";
-import { Search, ShoppingCart, User, Menu, X, Phone } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
-  { name: "Home", path: "/" },
-  { name: "AI Health Assistant", path: "/ai-health-assistant" },
-  { name: "Find Doctors", path: "/doctors" },
-  { name: "Lab Tests", path: "/lab-tests" },
-  { name: "Shop", path: "/shop" },
-  { name: "Forum", path: "/forum" },
-  { name: "About Us", path: "/about" },
+  { name: "Home", path: "/", icon: "🏠" },
+  { name: "Health Assistant", path: "/ai-health-assistant", icon: "🤖" },
+  { name: "Find Doctors", path: "/doctors", icon: "👨‍⚕️" },
+  { name: "Lab Tests", path: "/lab-tests", icon: "🧪" },
+  { name: "Shop", path: "/shop", icon: "🛒" },
+  { name: "Forum", path: "/forum", icon: "💬" },
+  { name: "About Us", path: "/about", icon: "ℹ️" },
 ];
 
 export const Header = () => {
@@ -23,8 +23,7 @@ export const Header = () => {
       <div className="bg-primary text-primary-foreground py-2 px-4 text-center text-sm">
         <div className="container mx-auto flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4">
           <span>Welcome to AMRUTAM — Authentic Ayurvedic Wellness</span>
-          <Button variant="ghost" size="sm" className="text-primary-foreground hover:bg-primary-dark inline-flex items-center">
-            <Phone className="w-4 h-4 mr-2" />
+          <Button variant="ghost" size="sm" className="text-primary-foreground hover:bg-primary-dark">
             Try Instant Free Call Now
           </Button>
         </div>
@@ -55,33 +54,20 @@ export const Header = () => {
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`relative mx-3 text-base font-normal text-[#2e3a25] transition-colors ${
+                  className={`relative mx-3 text-base font-normal text-[#2e3a25] transition-colors flex items-center gap-2 ${
                     location.pathname === link.path
                       ? "after:w-full after:h-[2px] after:bg-[#3A643B] after:absolute after:-bottom-1 after:left-0 pb-1"
                       : "hover:opacity-80"
                   }`}
                 >
+                  <span className="text-lg">{link.icon}</span>
                   {link.name}
                 </Link>
               ))}
             </nav>
 
-            {/* Right Icons */}
+            {/* Right Section */}
             <div className="flex items-center space-x-2 sm:space-x-4">
-              {/* Premium search box */}
-              <div className="hidden md:flex bg-white rounded-full px-4 py-2 shadow-[0_4px_12px_rgba(0,0,0,0.06)] items-center gap-3">
-                <Search className="text-primary w-5 h-5" />
-                <input className="flex-1 outline-none text-sm bg-transparent" placeholder="Search products..." />
-              </div>
-              <Link to="/cart" className="p-2 rounded-full hover:bg-muted transition-colors relative">
-                <ShoppingCart className="w-5 h-5" />
-                <span className="absolute -top-1 -right-1 bg-accent text-accent-foreground text-xs w-5 h-5 rounded-full flex items-center justify-center">
-                  2
-                </span>
-              </Link>
-              <Link to="/profile" className="p-2 rounded-full hover:bg-muted transition-colors">
-                <User className="w-5 h-5" />
-              </Link>
               <Link to="/login">
                 <Button className="hidden sm:inline-flex bg-primary hover:bg-primary-dark text-primary-foreground rounded-full px-6">
                   Login
@@ -100,12 +86,13 @@ export const Header = () => {
                   key={link.path}
                   to={link.path}
                   onClick={() => setIsMenuOpen(false)}
-                  className={`block py-3 px-4 rounded-lg transition-colors ${
+                  className={`block py-3 px-4 rounded-lg transition-colors flex items-center gap-3 ${
                     location.pathname === link.path
                       ? "bg-primary/10 text-primary"
                       : "hover:bg-muted"
                   }`}
                 >
+                  <span className="text-lg">{link.icon}</span>
                   {link.name}
                 </Link>
               ))}

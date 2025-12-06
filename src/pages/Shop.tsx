@@ -9,6 +9,18 @@ import { useToast } from "@/hooks/use-toast";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Link } from "react-router-dom";
 
+interface Product {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  originalPrice?: number;
+  rating: number;
+  reviews: number;
+  image: string;
+  category: string;
+}
+
 const categories = [
   { icon: "🌿", label: "All" },
   { icon: "💇", label: "Hair" },
@@ -85,14 +97,56 @@ const products = [
     category: "Digestion",
   },
   {
-    id: "6",
-    name: "Amrutam Joint Care Oil | Pain Relief",
-    description: "Ayurvedic oil for joint pain and muscle relief",
-    price: 425,
-    originalPrice: 525,
+    id: "27",
+    name: "Amrutam Calcium Plus | Bone Health Support",
+    description: "Advanced calcium formulation with natural herbs for strong bones and teeth",
+    price: 349,
+    originalPrice: 449,
+    rating: 4.7,
+    reviews: 198,
+    image: "/bones/bones1.jpg",
+    category: "Bones",
+  },
+  {
+    id: "28",
+    name: "Amrutam Bone Strengthening Capsules | Ayurvedic Formula",
+    description: "Traditional ayurvedic capsules for bone density and joint mobility",
+    price: 499,
+    rating: 4.8,
+    reviews: 267,
+    image: "/bones/bone2.jpg",
+    category: "Bones",
+  },
+  {
+    id: "29",
+    name: "Amrutam Herbal Bone Tonic | Natural Calcium",
+    description: "Herbal tonic with natural calcium sources for bone health and vitality",
+    price: 299,
+    originalPrice: 399,
+    rating: 4.6,
+    reviews: 145,
+    image: "/bones/bone3.jpg",
+    category: "Bones",
+  },
+  {
+    id: "30",
+    name: "Amrutam Joint Support Balm | Pain Relief",
+    description: "Natural balm for joint pain relief and improved mobility",
+    price: 225,
     rating: 4.9,
     reviews: 312,
-    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400",
+    image: "/bones/bone4.jpg",
+    category: "Bones",
+  },
+  {
+    id: "31",
+    name: "Amrutam Bone Marrow Tonic | Ayurvedic Health",
+    description: "Classical ayurvedic tonic for bone marrow health and overall vitality",
+    price: 399,
+    originalPrice: 499,
+    rating: 4.8,
+    reviews: 234,
+    image: "/bones/bone5.jpg",
     category: "Bones",
   },
   {
@@ -307,13 +361,76 @@ const products = [
     image: "/immunity/immun5.jpg",
     category: "Immunity",
   },
+  {
+    id: "32",
+    name: "Amrutam Wellness Essentials | Complete Health Kit",
+    description: "Comprehensive ayurvedic wellness kit for daily health maintenance",
+    price: 899,
+    originalPrice: 1199,
+    rating: 4.7,
+    reviews: 156,
+    image: "/more/item1.jpg",
+    category: "More",
+  },
+  {
+    id: "33",
+    name: "Amrutam Herbal Detox Tea | Cleansing Blend",
+    description: "Natural herbal tea blend for gentle detoxification and cleansing",
+    price: 349,
+    rating: 4.6,
+    reviews: 203,
+    image: "/more/item2.jpg",
+    category: "More",
+  },
+  {
+    id: "34",
+    name: "Amrutam Ayurvedic Face Mask | Deep Nourishment",
+    description: "Traditional ayurvedic face mask for deep skin nourishment and rejuvenation",
+    price: 299,
+    originalPrice: 399,
+    rating: 4.8,
+    reviews: 178,
+    image: "/more/item3.jpg",
+    category: "More",
+  },
+  {
+    id: "35",
+    name: "Amrutam Massage Oil | Relaxation & Wellness",
+    description: "Premium ayurvedic massage oil for relaxation and overall wellness",
+    price: 499,
+    rating: 4.9,
+    reviews: 245,
+    image: "/more/item4.jpg",
+    category: "More",
+  },
+  {
+    id: "36",
+    name: "Amrutam Herbal Hair Oil | Scalp Nourishment",
+    description: "Specialized herbal oil for scalp nourishment and healthy hair growth",
+    price: 399,
+    originalPrice: 499,
+    rating: 4.7,
+    reviews: 189,
+    image: "/more/item5.jpg",
+    category: "More",
+  },
+  {
+    id: "37",
+    name: "Amrutam Ayurvedic Soap | Gentle Cleansing",
+    description: "Natural ayurvedic soap for gentle cleansing and skin care",
+    price: 149,
+    rating: 4.5,
+    reviews: 134,
+    image: "/more/item6.jpg",
+    category: "More",
+  },
 ];
 
 export default function Shop() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
   const [showWelcomePopup, setShowWelcomePopup] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState<any>(null);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const { toast } = useToast();
   const summerScrollRef = useRef<HTMLDivElement>(null);
   const bestsellerScrollRef = useRef<HTMLDivElement>(null);
@@ -329,7 +446,7 @@ export default function Shop() {
   }, []);
 
   // Shuffle function to randomize array
-  const shuffleArray = (array: any[]) => {
+  const shuffleArray = (array: Product[]) => {
     const shuffled = [...array];
     for (let i = shuffled.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -355,7 +472,7 @@ export default function Shop() {
     });
   };
 
-  const handleProductClick = (product: any) => {
+  const handleProductClick = (product: Product) => {
     setSelectedProduct(product);
   };
 
@@ -385,9 +502,9 @@ export default function Shop() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-2xl sm:text-3xl lg:text-4xl font-heading font-semibold tracking-tight text-center mb-6 sm:mb-8 mt-2 sm:mt-4"
+            className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold tracking-tight text-center mb-6 sm:mb-8 mt-2 sm:mt-4 uppercase"
           >
-            Store
+            आयुर्वेदिक स्टोर
           </motion.h1>
 
           {/* Premium Search Bar */}
