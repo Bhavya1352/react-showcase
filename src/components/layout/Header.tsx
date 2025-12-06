@@ -52,12 +52,12 @@ export const Header = () => {
                   style={{
                     fontSize: '16px',
                     color: location.pathname === link.path ? '#2e3a25' : '#2e3a25',
-                    margin: '0 14px',
-                    fontWeight: '500'
+                    margin: '0 18px',
+                    fontWeight: '400'
                   }}
                   className={`relative transition-colors ${
                     location.pathname === link.path
-                      ? "after:w-full after:h-[2px] after:bg-primary after:absolute after:-bottom-1 after:left-0 pb-1"
+                      ? "after:w-full after:h-[2px] after:bg-[#3A643B] after:absolute after:-bottom-1 after:left-0 pb-1"
                       : "hover:opacity-80"
                   }`}
                 >

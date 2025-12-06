@@ -372,13 +372,13 @@ export default function Shop() {
   return (
     <Layout>
       {/* Hero Banner */}
-      <section className="relative bg-premium overflow-hidden" style={{backgroundImage: 'url(/store.jpg)', backgroundSize: 'cover', backgroundPosition: 'center'}}>
-        <div className="absolute inset-0 bg-black/30"></div>
+      <section className="relative bg-premium overflow-hidden" style={{backgroundImage: 'url(/store.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', filter: 'brightness(1.15) blur(1px)'}}>
+        <div className="absolute inset-0 bg-black/20"></div>
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute -left-20 -top-20 w-[300px] h-[300px] bg-[#E7DCC8] rounded-full blur-3xl opacity-30" />
           <div className="absolute -right-8 bottom-8 w-[220px] h-[220px] bg-[#F6EFD9] rounded-full blur-3xl opacity-25" />
         </div>
-        <div className="container mx-auto px-4 pt-16 pb-8 sm:pt-20 sm:pb-10 lg:pt-28 lg:pb-20 relative">
+        <div className="container mx-auto px-4" style={{ paddingTop: '40px', paddingBottom: '20px' }}>
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -395,7 +395,7 @@ export default function Shop() {
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             className="max-w-2xl mx-auto relative"
           >
-            <div className="bg-white/80 backdrop-blur-md rounded-full px-6 py-3 shadow-[0_8px_25px_rgba(0,0,0,0.08)] border border-white/20 flex items-center gap-3">
+            <div style={{ height: '54px', borderRadius: '40px', background: '#F1F1F1', padding: '0 24px' }} className="flex items-center gap-3 shadow-[0_4px_12px_rgba(0,0,0,0.08)]">
               <Search className="text-primary w-5 h-5" />
               <input
                 type="text"
