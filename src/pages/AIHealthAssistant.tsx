@@ -209,7 +209,7 @@ export default function AIHealthAssistant() {
                   </motion.p>
 
                   {/* Dosha Scores */}
-                  <div className="grid grid-cols-3 gap-6 mb-8">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
                     {Object.entries(answers).map(([doshaKey, score], index) => (
                       <motion.div
                         key={doshaKey}

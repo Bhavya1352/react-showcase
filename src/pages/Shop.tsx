@@ -775,7 +775,7 @@ export default function Shop() {
 
       {/* Welcome Popup */}
       <Dialog open={showWelcomePopup} onOpenChange={setShowWelcomePopup}>
-        <DialogContent className="max-w-sm sm:max-w-4xl mx-4">
+        <DialogContent className="w-[95vw] max-w-4xl">
           <DialogHeader>
             <DialogTitle className="text-center text-2xl font-heading text-forest">
               Welcome to AMRUTAM
@@ -797,7 +797,7 @@ export default function Shop() {
 
       {/* Product Quick View Modal */}
       <Dialog open={!!selectedProduct} onOpenChange={() => setSelectedProduct(null)}>
-        <DialogContent className="max-w-sm sm:max-w-2xl mx-4">
+        <DialogContent className="w-[95vw] max-w-2xl">
           {selectedProduct && (
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}

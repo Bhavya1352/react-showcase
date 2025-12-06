@@ -21,28 +21,33 @@ export const Header = () => {
     <header className="sticky top-0 z-50 w-full">
       {/* Top Banner */}
       <div className="bg-primary text-primary-foreground py-2 px-4 text-center text-sm">
-        <span>Welcome to AMRUTAM — Authentic Ayurvedic Wellness</span>
-        <Button variant="ghost" size="sm" className="ml-4 text-primary-foreground hover:bg-primary-dark">
-          <Phone className="w-4 h-4 mr-1" />
-          Try Instant Free Call Now
-        </Button>
+        <div className="container mx-auto flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4">
+          <span>Welcome to AMRUTAM — Authentic Ayurvedic Wellness</span>
+          <Button variant="ghost" size="sm" className="text-primary-foreground hover:bg-primary-dark inline-flex items-center">
+            <Phone className="w-4 h-4 mr-2" />
+            Try Instant Free Call Now
+          </Button>
+        </div>
       </div>
 
-      {/* Main Header */}
-      <div style={{ background: '#faf7ee' }} className="border-b border-border shadow-sm">
+      <div className="border-b border-border bg-[#faf7ee] shadow-sm">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between" style={{ padding: '16px 40px' }}>
-            {/* Mobile Menu Button */}
-            <button
-              className="lg:hidden p-2 rounded-md hover:bg-muted transition-colors"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
+          <div className="flex h-16 items-center justify-between">
+            {/* Left Section */}
+            <div className="flex items-center gap-4">
+              {/* Mobile Menu Button */}
+              <button
+                className="lg:hidden p-2 rounded-md hover:bg-muted transition-colors"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+              >
+                {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
 
-            {/* Logo */}
-            <Link to="/" className="flex items-center gap-3">
-            </Link>
+              {/* Logo */}
+              <Link to="/" className="flex items-center gap-3">
+                <img src="/favicon.svg" alt="Amrutam" className="h-8" />
+              </Link>
+            </div>
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center">
@@ -50,13 +55,7 @@ export const Header = () => {
                 <Link
                   key={link.path}
                   to={link.path}
-                  style={{
-                    fontSize: '16px',
-                    color: location.pathname === link.path ? '#2e3a25' : '#2e3a25',
-                    margin: '0 12px',
-                    fontWeight: '400'
-                  }}
-                  className={`relative transition-colors ${
+                  className={`relative mx-3 text-base font-normal text-[#2e3a25] transition-colors ${
                     location.pathname === link.path
                       ? "after:w-full after:h-[2px] after:bg-[#3A643B] after:absolute after:-bottom-1 after:left-0 pb-1"
                       : "hover:opacity-80"
@@ -70,7 +69,7 @@ export const Header = () => {
             {/* Right Icons */}
             <div className="flex items-center space-x-2 sm:space-x-4">
               {/* Premium search box */}
-              <div className="hidden sm:flex bg-white rounded-full px-6 py-3 shadow-[0_4px_12px_rgba(0,0,0,0.06)] items-center gap-3 w-72">
+              <div className="hidden md:flex bg-white rounded-full px-4 py-2 shadow-[0_4px_12px_rgba(0,0,0,0.06)] items-center gap-3">
                 <Search className="text-primary w-5 h-5" />
                 <input className="flex-1 outline-none text-sm bg-transparent" placeholder="Search products..." />
               </div>

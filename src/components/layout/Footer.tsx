@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 
 export const Footer = () => {
   return (
-    <footer style={{ background: '#f1eee2', padding: '60px 40px' }}>
+    <footer className="bg-[#f1eee2]">
       {/* App Download Section */}
       <div className="bg-gradient-to-r from-beige to-muted py-12 lg:py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -68,7 +68,7 @@ export const Footer = () => {
 
       {/* Main Footer */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '30px' }}>
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* Company Info */}
           <div>
             <h3 className="font-heading text-xl font-bold text-forest mb-4">Get in Touch</h3>

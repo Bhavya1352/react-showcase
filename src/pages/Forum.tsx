@@ -102,7 +102,7 @@ export default function Forum() {
       <section className="bg-background py-8 lg:py-12">
         <div className="container mx-auto px-4 max-w-4xl">
           <Tabs defaultValue="questions" className="w-full">
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6">
               <TabsList className="bg-muted">
                 <TabsTrigger value="questions">Questions</TabsTrigger>
                 <TabsTrigger value="thoughts">Thoughts</TabsTrigger>
@@ -111,7 +111,7 @@ export default function Forum() {
             </div>
 
             {/* Filter by Expert */}
-            <div className="flex items-center gap-4 mb-6">
+            <div className="flex flex-wrap items-center gap-4 mb-6">
               <span className="text-sm text-muted-foreground">Filter:</span>
               <select className="bg-card border border-border rounded-lg px-4 py-2 text-sm">
                 <option>All Questions</option>
