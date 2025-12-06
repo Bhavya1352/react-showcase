@@ -132,7 +132,7 @@ export default function About() {
             <div className="relative">
               <div className="aspect-square rounded-3xl overflow-hidden">
                 <img
-                  src="/ingridents.jpg"
+                  src="/Ayurvedic-ingredients"
                   alt="Ayurvedic ingredients"
                   className="w-full h-full object-cover"
                 />
