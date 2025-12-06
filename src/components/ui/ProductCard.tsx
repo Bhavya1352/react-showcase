@@ -29,14 +29,27 @@ export const ProductCard = ({
   return (
     <div
       onClick={onClick}
-      className="group bg-card rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.06)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-300 overflow-hidden cursor-pointer"
+      style={{
+        background: 'white',
+        borderRadius: '16px',
+        padding: '18px',
+        boxShadow: '0 4px 20px rgba(0,0,0,0.07)',
+        border: '1px solid #e7e3d5'
+      }}
+      className="group hover:shadow-[0_12px_30px_rgba(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-300 overflow-hidden cursor-pointer"
     >
       <Link to={`/product/${id}`}>
-        <div className="relative aspect-square overflow-hidden bg-beige">
+        <div className="relative overflow-hidden bg-beige" style={{ height: '240px', width: '100%', borderRadius: '12px' }}>
           <img
             src={image}
             alt={name}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            style={{
+              height: '240px',
+              width: '100%',
+              borderRadius: '12px',
+              objectFit: 'cover'
+            }}
+            className="group-hover:scale-105 transition-transform duration-500"
           />
         </div>
       </Link>

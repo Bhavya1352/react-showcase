@@ -28,9 +28,9 @@ export const Header = () => {
       </div>
 
       {/* Main Header */}
-      <div className="bg-card/95 backdrop-blur-md border-b border-border shadow-sm">
+      <div style={{ background: '#faf7ee' }} className="border-b border-border shadow-sm">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 lg:h-20">
+          <div className="flex items-center justify-between" style={{ padding: '16px 40px' }}>
             {/* Mobile Menu Button */}
             <button
               className="lg:hidden p-2 rounded-md hover:bg-muted transition-colors"
@@ -44,15 +44,21 @@ export const Header = () => {
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center space-x-8">
+            <nav className="hidden lg:flex items-center">
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`relative text-sm font-medium transition-transform transition-colors hover:text-primaryDark ${
+                  style={{
+                    fontSize: '16px',
+                    color: location.pathname === link.path ? '#2e3a25' : '#2e3a25',
+                    margin: '0 14px',
+                    fontWeight: '500'
+                  }}
+                  className={`relative transition-colors ${
                     location.pathname === link.path
-                      ? "text-primary after:w-full after:h-[2px] after:bg-primary after:absolute after:-bottom-1 after:left-0 pb-1"
-                      : "text-foreground/80"
+                      ? "after:w-full after:h-[2px] after:bg-primary after:absolute after:-bottom-1 after:left-0 pb-1"
+                      : "hover:opacity-80"
                   }`}
                 >
                   {link.name}

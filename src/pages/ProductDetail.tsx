@@ -99,7 +99,7 @@ export default function ProductDetail() {
 
       <section className="bg-background py-8 lg:py-12">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px', padding: '40px 20px' }}>
             {/* Product Images */}
             <div className="space-y-4">
               <div className="aspect-square bg-beige rounded-2xl overflow-hidden">
@@ -224,7 +224,14 @@ export default function ProductDetail() {
               </div>
 
               {/* Product Highlights */}
-              <div className="bg-beige rounded-xl p-4">
+              <div style={{
+                background: '#ffffff',
+                padding: '20px',
+                borderRadius: '16px',
+                boxShadow: '0 4px 20px rgba(0,0,0,0.06)',
+                border: '1px solid #e7e3d5',
+                marginBottom: '20px'
+              }}>
                 <h3 className="font-heading font-semibold text-forest mb-3">✨ Product Highlights</h3>
                 <div className="grid grid-cols-2 gap-3 text-sm">
                   <div className="flex items-center gap-2">
@@ -338,10 +345,10 @@ export default function ProductDetail() {
               </TabsList>
 
               <TabsContent value="ingredients" className="mt-6">
-                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div style={{ display: 'flex', justifyContent: 'space-between', margin: '20px 0' }}>
                   {ingredients.map((ing, idx) => (
-                    <div key={idx} className="bg-card rounded-xl p-4 border border-border">
-                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-3">
+                    <div key={idx} style={{ width: '30%', textAlign: 'center', color: '#6f7b65' }}>
+                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-3 mx-auto">
                         🌿
                       </div>
                       <h4 className="font-semibold text-forest">{ing.name}</h4>
@@ -406,9 +413,11 @@ export default function ProductDetail() {
           {/* Related Products */}
           <div className="mt-12">
             <h2 className="font-heading text-2xl font-bold text-forest mb-6">People Also Bought</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div style={{ display: 'flex', gap: '20px', overflowX: 'auto', paddingBottom: '10px' }}>
               {relatedProducts.map((product) => (
-                <ProductCard key={product.id} {...product} />
+                <div key={product.id} style={{ flexShrink: 0, width: '280px' }}>
+                  <ProductCard {...product} />
+                </div>
               ))}
             </div>
           </div>
