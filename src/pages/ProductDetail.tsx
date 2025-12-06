@@ -15,10 +15,10 @@ const productImages = [
 ];
 
 const ingredients = [
-  { name: "Oils like Neel", benefit: "Nourishes scalp" },
-  { name: "Bhringraj", benefit: "Promotes hair growth" },
-  { name: "Amla", benefit: "Strengthens roots" },
-  { name: "Brahmi", benefit: "Reduces hair fall" },
+  { name: "Oils like Neel", benefit: "Nourishes scalp", image: "/ingridents.jpg" },
+  { name: "Bhringraj", benefit: "Promotes hair growth", image: "/ingridents.jpg" },
+  { name: "Amla", benefit: "Strengthens roots", image: "/ingridents.jpg" },
+  { name: "Brahmi", benefit: "Reduces hair fall", image: "/ingridents.jpg" },
 ];
 
 const relatedProducts = [
@@ -348,8 +348,12 @@ export default function ProductDetail() {
                 <div style={{ display: 'flex', justifyContent: 'space-between', margin: '20px 0' }}>
                   {ingredients.map((ing, idx) => (
                     <div key={idx} style={{ width: '30%', textAlign: 'center', color: '#6f7b65' }}>
-                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-3 mx-auto">
-                        🌿
+                      <div className="w-16 h-16 rounded-full overflow-hidden mb-3 mx-auto border-2 border-primary/20">
+                        <img
+                          src={ing.image}
+                          alt={ing.name}
+                          className="w-full h-full object-cover"
+                        />
                       </div>
                       <h4 className="font-semibold text-forest">{ing.name}</h4>
                       <p className="text-sm text-muted-foreground">{ing.benefit}</p>
