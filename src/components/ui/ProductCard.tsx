@@ -1,5 +1,6 @@
 import { Plus, Star } from "lucide-react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 interface ProductCardProps {
   id: string;
@@ -27,7 +28,7 @@ export const ProductCard = ({
   onClick,
 }: ProductCardProps) => {
   return (
-    <div
+    <motion.div
       onClick={onClick}
       style={{
         background: 'white',
@@ -37,6 +38,8 @@ export const ProductCard = ({
         border: '1px solid #e7e3d5'
       }}
       className="group hover:shadow-[0_12px_30px_rgba(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-300 overflow-hidden cursor-pointer"
+      whileTap={{ scale: 1.05 }}
+      transition={{ type: "spring", stiffness: 400, damping: 17 }}
     >
       <Link to={`/product/${id}`}>
         <div className="relative overflow-hidden bg-beige" style={{ height: '240px', width: '100%', borderRadius: '12px' }}>
@@ -92,6 +95,6 @@ export const ProductCard = ({
           </button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };

@@ -7,6 +7,7 @@ import { CategoryChip } from "@/components/ui/CategoryChip";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Link } from "react-router-dom";
 
 const categories = [
   { icon: "🌿", label: "All" },
@@ -406,6 +407,7 @@ export default function Shop() {
               />
             </div>
           </motion.div>
+
         </div>
       </section>
 
@@ -414,7 +416,7 @@ export default function Shop() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.4 }}
-        className="bg-background py-8 relative"
+        className="bg-background py-4 relative"
       >
         <div className="container mx-auto px-4">
           <motion.div
@@ -456,7 +458,7 @@ export default function Shop() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.6 }}
-        className="bg-background py-8 lg:py-12"
+        className="bg-background pt-4 pb-8 lg:pb-12"
       >
         <div className="container mx-auto px-4">
           {/* Products Collection */}

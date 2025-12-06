@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 
 const navLinks = [
   { name: "Home", path: "/" },
+  { name: "AI Health Assistant", path: "/ai-health-assistant" },
   { name: "Find Doctors", path: "/doctors" },
   { name: "Lab Tests", path: "/lab-tests" },
   { name: "Shop", path: "/shop" },
@@ -52,7 +53,7 @@ export const Header = () => {
                   style={{
                     fontSize: '16px',
                     color: location.pathname === link.path ? '#2e3a25' : '#2e3a25',
-                    margin: '0 18px',
+                    margin: '0 12px',
                     fontWeight: '400'
                   }}
                   className={`relative transition-colors ${

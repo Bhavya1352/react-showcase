@@ -13,6 +13,7 @@ import Contact from "./pages/Contact";
 import Doctors from "./pages/Doctors";
 import Blog from "./pages/Blog";
 import Login from "./pages/Login";
+import AIHealthAssistant from "./pages/AIHealthAssistant";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -36,6 +37,7 @@ const App = () => (
           <Route path="/doctors" element={<Doctors />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/ai-health-assistant" element={<AIHealthAssistant />} />
           <Route path="/lab-tests" element={<Shop />} />
           <Route path="/profile" element={<Login />} />
           <Route path="*" element={<NotFound />} />
