@@ -1,4 +1,4 @@
-# React Showcase
+# Ayurveda
 
 ## Project info
 
