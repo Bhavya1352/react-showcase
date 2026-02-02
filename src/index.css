@@ -167,18 +167,35 @@
 @layer utilities {
   .font-heading {
     font-family: 'Playfair Display', serif;
+    letter-spacing: -0.5px;
   }
 
   .font-body {
     font-family: 'Inter', sans-serif;
   }
 
-  /* Premium background utility */
+  /* Premium gradient backgrounds */
   .bg-premium {
     background: linear-gradient(135deg, #FAF9F4 0%, #F5F3ED 50%, #EFECE6 100%);
   }
 
-  /* Subtle grain texture (requires public/textures/grain-light.png) */
+  .bg-gradient-radial {
+    background: radial-gradient(circle at 30% 50%, rgba(58, 100, 59, 0.1) 0%, transparent 50%);
+  }
+
+  .bg-gradient-linear {
+    background: linear-gradient(135deg, #3a643b 0%, #2e5a30 50%, #1a3a1b 100%);
+  }
+
+  .bg-gradient-warm {
+    background: linear-gradient(135deg, #faf7ee 0%, #f5f3ed 50%, #efece6 100%);
+  }
+
+  .bg-gradient-accent {
+    background: linear-gradient(135deg, rgba(58, 100, 59, 0.05) 0%, rgba(58, 100, 59, 0.02) 100%);
+  }
+
+  /* Subtle grain texture */
   .bg-grain {
     background-image: url('/textures/grain-light.svg');
     background-repeat: repeat;
@@ -191,5 +208,61 @@
     border-radius: 9999px;
     filter: blur(40px);
     opacity: 0.3;
+  }
+
+  /* Floating animation */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-float-slow {
+    animation: float 8s ease-in-out infinite;
+  }
+
+  .animate-float-slower {
+    animation: float 10s ease-in-out infinite;
+  }
+
+  /* Glow effect */
+  .glow-effect {
+    box-shadow: 0 0 30px rgba(58, 100, 59, 0.2);
+  }
+
+  .glow-effect-hover:hover {
+    box-shadow: 0 0 40px rgba(58, 100, 59, 0.3);
+    transition: box-shadow 0.3s ease;
+  }
+
+  /* Shimmer effect */
+  .shimmer {
+    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 3s infinite;
+  }
+
+  /* Text gradient */
+  .text-gradient {
+    background: linear-gradient(135deg, #3a643b 0%, #2e5a30 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
   }
 }

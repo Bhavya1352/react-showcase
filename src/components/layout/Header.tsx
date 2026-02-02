@@ -2,11 +2,12 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 
 const navLinks = [
   { name: "Home", path: "/", icon: "🏠" },
   { name: "Health Assistant", path: "/ai-health-assistant", icon: "🤖" },
-  { name: "Find Doctors", path: "/doctors", icon: "👨‍⚕️" },
+  { name: "Find Doctors", path: "/doctors", icon: "👨⚕️" },
   { name: "Lab Tests", path: "/lab-tests", icon: "🧪" },
   { name: "Shop", path: "/shop", icon: "🛒" },
   { name: "Forum", path: "/forum", icon: "💬" },
@@ -17,61 +18,123 @@ export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
+  const menuVariants = {
+    hidden: { opacity: 0, y: -10 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        staggerChildren: 0.05,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.3 },
+    },
+  };
+
   return (
     <header className="sticky top-0 z-50 w-full">
       {/* Top Banner */}
-      <div className="bg-primary text-primary-foreground py-2 px-4 text-center text-sm">
+      <motion.div 
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="bg-gradient-linear text-primary-foreground py-3 px-4 text-center text-sm shadow-md"
+      >
         <div className="container mx-auto flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4">
-          <span>Welcome to AMRUTAM — Authentic Ayurvedic Wellness</span>
-          <Button variant="ghost" size="sm" className="text-primary-foreground hover:bg-primary-dark">
-            Try Instant Free Call Now
-          </Button>
+          <span className="font-semibold">Welcome to AMRUTAM — Authentic Ayurvedic Wellness</span>
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Button variant="ghost" size="sm" className="text-primary-foreground hover:bg-primary-dark/20 font-semibold">
+              Try Instant Free Call Now
+            </Button>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
 
-      <div className="border-b border-border bg-[#faf7ee] shadow-sm">
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        className="border-b border-primary/10 bg-gradient-to-r from-[#faf7ee] via-[#faf7ee] to-[#f5f3ed] shadow-sm backdrop-blur-sm"
+      >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             {/* Left Section */}
             <div className="flex items-center gap-4">
               {/* Mobile Menu Button */}
-              <button
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
                 className="lg:hidden p-2 rounded-md hover:bg-muted transition-colors"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
               >
                 {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-              </button>
+              </motion.button>
 
               {/* Logo */}
               <Link to="/" className="flex items-center gap-3">
-                <img src="/favicon.svg" alt="Amrutam" className="h-8" />
+                <motion.img 
+                  src="/favicon.svg" 
+                  alt="Amrutam" 
+                  className="h-8" 
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  transition={{ duration: 0.3 }}
+                />
               </Link>
             </div>
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center">
-              {navLinks.map((link) => (
-                <Link
+              {navLinks.map((link, idx) => (
+                <motion.div
                   key={link.path}
-                  to={link.path}
-                  className={`relative mx-3 text-base font-normal text-[#2e3a25] transition-colors flex items-center gap-2 ${
-                    location.pathname === link.path
-                      ? "after:w-full after:h-[2px] after:bg-[#3A643B] after:absolute after:-bottom-1 after:left-0 pb-1"
-                      : "hover:opacity-80"
-                  }`}
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: idx * 0.05 }}
                 >
-                  <span className="text-lg">{link.icon}</span>
-                  {link.name}
-                </Link>
+                  <Link
+                    to={link.path}
+                    className={`relative mx-3 text-base font-medium text-[#2e3a25] transition-colors flex items-center gap-2 group ${
+                      location.pathname === link.path
+                        ? "text-primary"
+                        : "hover:text-primary"
+                    }`}
+                  >
+                    <span className="text-lg group-hover:scale-125 transition-transform duration-300">{link.icon}</span>
+                    {link.name}
+                    {location.pathname === link.path && (
+                      <motion.div
+                        layoutId="underline"
+                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-linear rounded-full"
+                        transition={{ duration: 0.3 }}
+                      />
+                    )}
+                  </Link>
+                </motion.div>
               ))}
             </nav>
 
             {/* Right Section */}
             <div className="flex items-center space-x-2 sm:space-x-4">
               <Link to="/login">
-                <Button className="hidden sm:inline-flex bg-primary hover:bg-primary-dark text-primary-foreground rounded-full px-6">
-                  Login
-                </Button>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Button className="hidden sm:inline-flex bg-gradient-linear hover:shadow-lg text-primary-foreground rounded-full px-8 font-semibold transition-all duration-300">
+                    Login
+                  </Button>
+                </motion.div>
               </Link>
             </div>
           </div>
@@ -79,30 +142,38 @@ export const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="lg:hidden bg-card border-t border-border animate-fade-in">
-            <nav className="container mx-auto px-4 py-4 space-y-2">
+          <motion.div 
+            variants={menuVariants}
+            initial="hidden"
+            animate="visible"
+            className="lg:hidden bg-white/95 backdrop-blur-md border-t border-primary/10 shadow-lg"
+          >
+            <nav className="container mx-auto px-4 py-6 space-y-2">
               {navLinks.map((link) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  onClick={() => setIsMenuOpen(false)}
-                  className={`block py-3 px-4 rounded-lg transition-colors flex items-center gap-3 ${
-                    location.pathname === link.path
-                      ? "bg-primary/10 text-primary"
-                      : "hover:bg-muted"
-                  }`}
-                >
-                  <span className="text-lg">{link.icon}</span>
-                  {link.name}
-                </Link>
+                <motion.div key={link.path} variants={itemVariants}>
+                  <Link
+                    to={link.path}
+                    onClick={() => setIsMenuOpen(false)}
+                    className={`block py-3 px-4 rounded-lg transition-all duration-300 flex items-center gap-3 font-medium ${
+                      location.pathname === link.path
+                        ? "bg-gradient-linear text-white"
+                        : "hover:bg-primary/5 text-[#2e3a25]"
+                    }`}
+                  >
+                    <span className="text-lg">{link.icon}</span>
+                    {link.name}
+                  </Link>
+                </motion.div>
               ))}
-              <Link to="/login" onClick={() => setIsMenuOpen(false)}>
-                <Button className="w-full mt-4 bg-primary hover:bg-primary-dark">Login</Button>
-              </Link>
+              <motion.div variants={itemVariants}>
+                <Link to="/login" onClick={() => setIsMenuOpen(false)}>
+                  <Button className="w-full mt-4 bg-gradient-linear hover:shadow-lg text-primary-foreground font-semibold">Login</Button>
+                </Link>
+              </motion.div>
             </nav>
-          </div>
+          </motion.div>
         )}
-      </div>
+      </motion.div>
     </header>
   );
 };
